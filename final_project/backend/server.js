@@ -28,7 +28,7 @@ const app  = express();
 const PORT = process.env.PORT || 3000;
 
 /* ── Admin Basic Auth ──────────────────────────────────────── */
-const ADMIN_USER = 'kimke';
+const ADMIN_USER = process.env.ADMIN_USERNAME || 'kimke';
 const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'bubbleme';
 
 function adminAuth(req, res, next) {
