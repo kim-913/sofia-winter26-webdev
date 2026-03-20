@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: bubble-bliss
+    runtime: node
+    rootDir: final_project/backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 24.5.0
