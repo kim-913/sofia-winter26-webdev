@@ -1,257 +1,166 @@
-# Bubble Bliss — Final Project Presentation
-### Web Development · Sofia University · Winter 2026
-### Kim Ke · March 22, 2026
+# Bubble Bliss — Presentation Script
+**Kim Ke · Web Development · Winter 2026**
+**8–12 min recorded · 5 min live**
 
 ---
 
-## Slide Deck Outline (10 slides · ~8 minutes)
+## Slide 1 — Title
+
+Hi, I'm Kim. This is Bubble Bliss — a five-page website for a fictional milk tea shop.
+I built the whole thing from scratch: vanilla HTML, CSS, and JavaScript.
+No React, no frameworks, no libraries. Just me and the DOM.
+And because I wanted to go a bit further, I also added a small Express backend
+with a SQLite database, and the whole site is live on Render right now.
 
 ---
 
-### SLIDE 1 — Title
-**Heading:** Bubble Bliss
-**Subheading:** A Full-Stack Web Experience for a Fictional Milk Tea Shop
-**Visual:** Screenshot of the home page hero (full width, bubbles floating)
-**Bottom:** Kim Ke · Web Dev · Sofia University Winter 2026
+## Slide 2 — Design System
 
-> **Script (30 sec):**
-> "Hi everyone — my name is Kim, and today I'm presenting Bubble Bliss, a multi-page
-> website for a fictional milk tea shop. I built this entirely from scratch using vanilla
-> HTML, CSS, and JavaScript — no frameworks, no libraries. Everything you'll see was
-> hand-coded. Let me walk you through it."
-
----
-
-### SLIDE 2 — Project Overview
-**Heading:** What I Built
-**Content (bullet list):**
-- 5 fully responsive pages: Home, Menu, About, Locations, Contact
-- 1 unified design system (custom CSS properties, 3 breakpoints)
-- 3 JavaScript files powering interactive features
-- Meets every module 2–9 rubric requirement
-
-**Visual:** File tree diagram showing the project structure
-
-> **Script (45 sec):**
-> "The project has five pages, each serving a different purpose. The home page draws
-> you in, the menu page is the most interactive — with live search, filter tabs, and a
-> modal detail view. The about page tells the brand story. Locations has an accessible
-> HTML table. And the contact page has a fully validated form with real-time feedback.
-> All pages share one CSS file with a design system built on custom properties — things
-> like color tokens, spacing scales, and typography — so every page looks consistent."
+Before I wrote a single line of HTML, I figured out the entire design system.
+Every color, every font size, every spacing value is a CSS custom property —
+so if I wanted to change the brand purple across all five pages, it's literally one line.
+I checked all the color combinations against WCAG contrast requirements
+before committing to them.
+For fonts, I went with Georgia for headings and Arial for body —
+both system fonts, so there's zero load time from external font files.
+And spacing follows a strict 8px grid throughout.
 
 ---
 
-### SLIDE 3 — Design System
-**Heading:** Design System
-**Visual:** Color swatches for the 8 brand colors + font pairing card
-**Content:**
-- 8 CSS custom properties for color (purple, pink, cream, mint, charcoal...)
-- 2 font families (Georgia serif headings · Arial sans body)
-- Spacing scale: --space-1 through --space-6 (8px → 64px)
-- Reusable components: .btn, .card, .badge, .grid-auto, .container
+## Slide 3 — Layout & Responsiveness
 
-> **Script (45 sec):**
-> "Before writing a single page, I built a design system in CSS. Every color is a custom
-> property — so if I want to change the brand purple, I change one line and it updates
-> everywhere. Same for spacing — I use a consistent scale from 8px up to 64px. This is
-> how real product teams work. Having this foundation made building five pages much
-> faster and kept everything visually cohesive."
+The whole site is mobile-first — base styles target a phone,
+and I layer on complexity as the screen gets wider.
+I used CSS Grid for anything 2D, like the menu cards or the team grid,
+because it reflows automatically without needing breakpoint rules in the grid itself.
+Flexbox handles 1D things — the nav, the hero buttons, location cards side by side.
+I have three breakpoints at 480, 768, and 1024 pixels.
+The sticky header is just five lines of JavaScript that adds a shadow
+when you scroll past 10 pixels.
 
 ---
 
-### SLIDE 4 — Home Page
-**Heading:** Home Page — First Impressions Matter
-**Visual:** Screenshot of hero section with floating bubble animation
-**Content:**
-- Full-viewport hero with CSS @keyframes 'float' bubble animation
-- Featured drinks grid (CSS Grid, auto-fill columns)
-- Sticky header with scroll shadow (JS scroll event)
-- Hamburger menu on mobile with ARIA aria-expanded
-- Word-by-word hero title reveal (Apple-style)
-- 3D card tilt on hover (mousemove → perspective transform)
-- Smooth page entrance fade on load
+## Slide 4 — Menu Page
 
-> **Script (1 min):**
-> "The home page is all about making a great first impression. The hero uses a CSS
-> gradient background and pure CSS animation — those floating circles are just div
-> elements with border-radius 50% and a keyframe animation. No JavaScript, no canvas.
->
-> Watch the heading when the page loads — it splits into individual word spans with
-> staggered animation delays, so each word rises into place, exactly like Apple product
-> pages. Below that, as you scroll, every section heading does a 'clip reveal': the text
-> literally slides up through an invisible floor using CSS overflow:hidden and transform.
->
-> Hover over any card and it tilts in 3D toward your mouse — that's 12 lines of
-> JavaScript calculating rotateX and rotateY from the cursor position."
+The menu page is where most of the JavaScript lives.
+All 20 drinks are stored as a JavaScript array of objects,
+and a single renderCards function builds all the DOM.
+The search input has a 300ms debounce —
+so it waits until you stop typing before filtering,
+instead of running on every single keystroke.
+When you open a drink card, it's a full modal with a focus trap —
+Tab and Shift-Tab stay inside the modal until you close it,
+and Escape closes it and returns focus to the card you opened.
+The cart uses sessionStorage so your items survive
+when you navigate between pages.
+And there's a favorites system in localStorage
+that actually greets you by name when you come back.
 
 ---
 
-### SLIDE 5 — Menu Page (LIVE DEMO)
-**Heading:** Menu Page — Interactive Drink Catalog
-**Visual:** Screenshot of the menu grid + modal open
-**Content:**
-- 20 drinks stored as a JavaScript data array
-- Live debounced search (300ms) + 5 filter tabs
-- Click any card → modal with ingredients, customizer (sweetness, ice)
-- Add to Cart → floating cart sidebar with sessionStorage persistence
-- ❤️ Favorite button → localStorage remembers your usual order
+## Slide 5 — Accessibility
 
-> **Script (1.5 min):**
-> "This is the page I'm most proud of. All 20 drinks live in a JavaScript array — no
-> backend, no database. The renderCards function takes a filtered list and builds the
-> HTML dynamically. The search input uses a debounce so it doesn't fire on every
-> keystroke — it waits 300 milliseconds, which is a real performance technique.
->
-> [DEMO: type 'taro' in search → cards filter. Click Milk Tea tab → filter. Click a card.]
->
-> Clicking a card opens a modal — I built focus trapping so tabbing stays inside the modal
-> until you close it. That's an accessibility requirement. Inside the modal you can
-> customize sweetness and ice level, then add to cart. The cart persists across pages
-> using sessionStorage. And the heart button saves your single favorite drink to
-> localStorage — so the next time you visit, the page greets you by name."
+I treated accessibility as part of the structure, not something I'd fix at the end.
+Every page has a skip-to-content link.
+The hamburger menu sets aria-expanded on every toggle,
+and it closes on Escape or if you click outside of it.
+The category filter tabs work with arrow keys using the ARIA tablist pattern.
+Form errors use role="alert" so screen readers announce them without losing focus.
+Every color pair in the site meets WCAG AA minimum contrast —
+body text is actually at 15.8 to 1, which is AAA.
 
 ---
 
-### SLIDE 6 — Locations Page
-**Heading:** Locations — Accessible HTML Tables (Module 8)
-**Visual:** Screenshot of the store hours table with today's row highlighted
-**Content:**
-- <table> with <caption>, <thead>, <th scope="col/row">
-- Zebra striping: tr:nth-child(even)
-- Today's row highlighted in pink via new Date().getDay()
-- Location cards with Flexbox layout
+## Slide 6 — Contact Form
 
-> **Script (30 sec):**
-> "Module 8 was all about accessible tables, and the locations page shows every
-> technique. The table has a caption, proper scope attributes on all header cells for
-> screen reader navigation, and zebra striping with the nth-child selector. My favorite
-> detail: JavaScript reads today's day of the week and adds a highlight class to that row.
-> So if you open this on a Monday, Monday is highlighted in pink."
+The contact form covers every HTML5 input type the rubric asks for:
+text, email, tel, radio buttons, checkboxes, a select, and a textarea.
+I put novalidate on the form so the browser doesn't take over —
+all validation runs through JavaScript.
+The blur event validates when you leave a field.
+The input event clears the error message as soon as you start correcting it.
+Each input is linked to its error span with aria-describedby,
+so screen readers know which error belongs to which field.
+When you submit, it posts to the backend, saves to the database,
+and plays a typewriter animation for the success message.
 
 ---
 
-### SLIDE 7 — Contact Page (LIVE DEMO)
-**Heading:** Contact Form — Real-Time Validation
-**Visual:** Screenshot of form with error states + success banner
-**Content:**
-- All Module 9 input types: text, email, tel, radio, checkbox, select, textarea
-- Inline error messages with ARIA aria-describedby (accessible)
-- blur validation + input auto-clear on correction
-- Submit: 1.4s loading state → typewriter success animation
-- Personalized "Hey Kim!" response based on name field
+## Slide 7 — Locations Table
 
-> **Script (1 min):**
-> "The contact form covers every input type from Module 9. Validation runs on blur —
-> when you leave a field — and errors are cleared as you correct them. The error spans
-> are linked to inputs with aria-describedby so screen readers read the error aloud.
->
-> [DEMO: hit submit empty → errors appear. Fill it in → hit Send Message.]
->
-> When you submit, the button shows a loading spinner for 1.4 seconds — that's a fake
-> delay, but in a real app it would be a network request. Then the form swaps out for a
-> personalized success banner, and the message types out character by character. It
-> also reads the message aloud using the Web Speech API — that's a native browser
-> feature, zero libraries."
+The locations page has an accessible data table.
+I put scope="col" on the day headers and scope="row" on the location headers —
+which means a screen reader will say "Monday, Palo Alto: 9AM to 9PM"
+instead of just reading out a number with no context.
+The rows alternate with zebra striping using nth-child(even).
+And today's row gets a pink highlight automatically —
+I just grab new Date().getDay() and match it to a data attribute on each row.
 
 ---
 
-### SLIDE 8 — Technical Highlights
-**Heading:** Under the Hood
-**Visual:** Code snippet (one of the impressive ones — focus trap or debounce)
-**Content (two-column):**
+## Slide 8 — Backend
 
-| Feature | Technique |
-|---|---|
-| Web Speech API | SpeechSynthesisUtterance, voice selection |
-| Focus trap in modal | tabIndex + keydown Tab intercept |
-| Debounced search | clearTimeout / setTimeout pattern |
-| Cart | sessionStorage JSON serialization |
-| Favorites | localStorage with single-item constraint |
-| Scroll progress bar | window.scrollY / scrollHeight × 100% |
-| Apple clip-reveal | CSS overflow:hidden + translateY(105%) on inner span |
-| 3D card tilt | mousemove → perspective(700px) rotateX/Y + scale |
-| Hero parallax | scroll event → translateY + opacity fade |
-| Count-up stats | IntersectionObserver + requestAnimationFrame cubic ease |
-| Word-by-word reveal | JS splits h1 → spans with staggered CSS animation-delay |
-| Form typewriter | setInterval character-by-character output |
-
-> **Script (1.5 min):**
-> "Let me highlight the most technically interesting pieces. The Apple-style scroll effects
-> use a combination of IntersectionObserver and CSS. For the heading clip-reveal: I wrap
-> the heading text in a span, set the parent to overflow:hidden, and start the span at
-> translateY(105%). When IntersectionObserver fires, a CSS class adds the transition and
-> snaps it to translateY(0). The text literally emerges from the floor. No library needed.
->
-> The 3D card tilt uses event delegation — one mousemove listener on the document
-> calculates cursor position relative to whichever .card is under the mouse, then applies
-> perspective(700px) rotateX/Y. It works for dynamically generated cards too, because
-> it delegates to the document.
->
-> The scroll progress bar is one line of math: scrollY divided by (total height minus
-> viewport height) times 100. Assign that to a CSS width property. Done."
+For extra credit, I built a small backend.
+It's an Express server with three endpoints:
+GET /api/drinks serves the menu with optional search and category filters,
+POST /api/contact saves contact form submissions,
+and POST /api/orders saves placed orders.
+The database is SQLite using node:sqlite,
+which is built directly into Node 24 —
+so there's nothing to install or compile.
+The important thing is that the site works exactly the same as a static file —
+the backend just adds persistence on top.
+And it auto-deploys from GitHub every time I push.
 
 ---
 
-### SLIDE 9 — What I Learned
-**Heading:** Key Takeaways
-**Content:**
-- CSS Custom Properties are not optional — they are how real teams scale CSS
-- Accessibility isn't extra credit; it's correctness (ARIA, scope, focus management)
-- Debouncing, sessionStorage, localStorage — small techniques, huge UX impact
-- Building for mobile first forces better layout decisions
-- JavaScript without frameworks is harder but you understand everything you write
+## Slide 9 — Admin Dashboard
 
-> **Script (45 sec):**
-> "If I had to pick three things I'm taking away from this project: First, CSS custom
-> properties changed how I think about design systems — being able to swap the entire
-> color palette by changing five lines is powerful. Second, accessibility is not a bonus
-> feature. ARIA attributes, focus management, semantic HTML — these are what separate
-> a website from a real product. Third, vanilla JavaScript forces you to understand your
-> tools. There's no magic. Every feature I built, I can explain exactly how it works."
+Since I'm saving orders and contacts to a database,
+I also built an admin page at /admin.
+It shows every order — what was ordered, the customizations,
+the total, the timestamp — and every contact form submission.
+There's a login page that matches the site's design,
+and once you're in there's a logout button in the header.
+It's protected server-side with a cookie-based session,
+so anyone hitting /admin without being logged in just sees the login form.
+I'll pull this up during the demo to show a live order I place right before.
 
 ---
 
-### SLIDE 10 — Live Demo + Q&A
-**Heading:** Let's Look at It Live
-**Visual:** QR code or local URL
+## Slide 10 — What I Learned
 
-> **Script (30 sec intro, then open browser):**
-> "I'll open the site now and you can ask me to navigate to any page or try any feature.
-> The search, the modal, the form, the cart — everything is live. Happy to answer
-> questions about any of the implementation choices I made."
+Three things that actually stuck with me.
 
----
+First: build the design system before anything else.
+By the time I got to page five, it took maybe 20% of the time page one did —
+because every decision was already made and locked in.
 
-## Presentation Tips
+Second: accessibility is architecture.
+I tried to retrofit focus traps and aria-live regions onto an existing page once, and it was a mess.
+Once I started treating them as part of the HTML structure from the beginning, they were easy.
 
-- **Demo order:** Home → Menu (search + modal + cart) → Contact (submit form) → Locations (table)
-- **Time check:** Aim for 7–8 minutes of talking + 2 minutes of live demo = 10 min total
-- **If something breaks live:** Stay calm, explain the feature verbally. "Here's what it normally does..."
-- **Pause after the typewriter effect on the success banner** — let classmates see it, it's impressive
-- **Point out the scroll progress bar** on tall pages (menu page is good for this)
-- **Speak to the ARIA attributes** — most classmates won't have done this, it differentiates your project
+Third: the bugs you hate most teach you the most.
+I spent about an hour debugging why my entire menu script just silently stopped running.
+Turned out it was a top-level return statement in strict mode.
+I now understand JavaScript execution in a way no tutorial would have gotten me there.
 
 ---
 
-## Frequently Asked Questions (prepare these)
+## Slide 11 — Demo
 
-**Q: Why no framework like React?**
-> "The assignment required vanilla JS, and honestly I think it made me a better
-> developer. I had to understand DOM manipulation, event delegation, and state
-> management without any abstraction helping me."
+Alright, let's look at the live site.
 
-**Q: How does the modal focus trap work?**
-> "When the modal opens, I store a reference to the element that was focused before.
-> I add a keydown listener that intercepts Tab and Shift-Tab, and forces focus to stay
-> within the modal's focusable elements. On close, focus returns to the original element."
+I'll start on the home page —
+scroll down slowly so you can see the clip-reveal headings and the card entrance animations.
+Then I'll go to the menu, do a quick search,
+click into a drink to show the modal and the customizer,
+add it to the cart, and place an order.
+Then I'll hit the contact form, fill it out, and submit it.
+And then I'll go to /admin and show the order and the contact form submission
+that just came in — live from the database.
 
-**Q: What would you add with more time?**
-> "A real backend with Node.js — actually saving form submissions. User accounts so
-> the favorites system is synced across devices. And I'd add a dark mode toggle using
-> prefers-color-scheme plus a CSS class override."
+---
 
-**Q: How long did this take?**
-> "The design system and first three pages took about a week. The menu page
-> interactions — search, filter, modal, cart — took another week. The final polish,
-> accessibility work, and the Web Speech API were the last few days."
+*~9 minutes at a natural speaking pace.*
+*5-min live version: skip slides 3, 6, 7. Max 45 seconds per slide. Hit the demo at 3:30.*
