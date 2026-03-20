@@ -7,6 +7,7 @@
  *
  *   GET  /api/drinks           list all drinks (supports ?category=&search=)
  *   GET  /api/orders           list all placed orders (newest first)
+ *   GET  /api/contacts         list all contact submissions (newest first)
  *   POST /api/contact          save a contact form submission
  *   POST /api/orders           save a placed order
  *
@@ -26,11 +27,37 @@ require('./seed');
 const app  = express();
 const PORT = process.env.PORT || 3000;
 
+/* ── Admin Basic Auth ──────────────────────────────────────── */
+const ADMIN_USER = 'kimke';
+const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'bubbleme';
+
+function adminAuth(req, res, next) {
+  const auth = req.headers['authorization'] || '';
+  const [scheme, encoded] = auth.split(' ');
+  if (scheme === 'Basic' && encoded) {
+    const [user, pass] = Buffer.from(encoded, 'base64').toString().split(':');
+    if (user === ADMIN_USER && pass === ADMIN_PASS) return next();
+  }
+  res.set('WWW-Authenticate', 'Basic realm="Bubble Bliss Admin"');
+  res.status(401).send('Unauthorized');
+}
+
 /* ── Middleware ────────────────────────────────────────────── */
 app.use(express.json({ limit: '16kb' }));
 
 // Serve the frontend (everything in final_project/) as static files
-app.use(express.static(path.join(__dirname, '..')));
+// Admin page is served separately behind auth (see route below)
+app.use(express.static(path.join(__dirname, '..'), { index: false }));
+
+/* ── Admin page (auth-protected) ───────────────────────────── */
+app.get(['/admin', '/admin.html'], adminAuth, (_req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'admin.html'));
+});
+
+// Restore default index serving for /
+app.get('/', (_req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
+});
 
 /* ── GET /api/drinks ───────────────────────────────────────── */
 app.get('/api/drinks', (req, res) => {
@@ -96,8 +123,15 @@ app.post('/api/contact', (req, res) => {
   res.status(201).json({ ok: true, id: result.lastInsertRowid });
 });
 
+/* ── GET /api/contacts ─────────────────────────────────────── */
+app.get('/api/contacts', adminAuth, (req, res) => {
+  const rows = db.prepare('SELECT * FROM contacts ORDER BY created_at DESC').all();
+  const contacts = rows.map(c => ({ ...c, how_heard: JSON.parse(c.how_heard) }));
+  res.json(contacts);
+});
+
 /* ── GET /api/orders ───────────────────────────────────────── */
-app.get('/api/orders', (req, res) => {
+app.get('/api/orders', adminAuth, (req, res) => {
   const rows = db.prepare('SELECT * FROM orders ORDER BY created_at DESC').all();
   const orders = rows.map(o => ({ ...o, items: JSON.parse(o.items) }));
   res.json(orders);

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bubble Bliss — Admin</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f8;
+      color: #2c2c2c;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .admin-header {
+      background: #8b7bb5;
+      color: #fff;
+      padding: 1.1rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .admin-header h1 { font-family: Georgia, serif; font-size: 1.4rem; }
+    .admin-header p  { font-size: 0.85rem; opacity: 0.85; margin-top: 0.15rem; }
+
+    /* ── Layout ── */
+    .admin-body {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    /* ── Section card ── */
+    .panel {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      overflow: hidden;
+    }
+    .panel__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #ebebf0;
+      background: #faf8ff;
+    }
+    .panel__title {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      color: #8b7bb5;
+    }
+    .panel__count {
+      background: #8b7bb5;
+      color: #fff;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      padding: 0.15rem 0.7rem;
+    }
+
+    /* ── Table ── */
+    .tbl-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    thead th {
+      background: #f4f0ff;
+      text-align: left;
+      padding: 0.65rem 1rem;
+      font-weight: 600;
+      color: #5a4e82;
+      white-space: nowrap;
+    }
+    tbody tr { border-top: 1px solid #f0f0f4; }
+    tbody tr:hover { background: #faf8ff; }
+    td { padding: 0.65rem 1rem; vertical-align: top; }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+    .badge--catering  { background: #fde8d0; color: #954d00; }
+    .badge--general   { background: #e0ecff; color: #1a4db5; }
+    .badge--feedback  { background: #d4f5e2; color: #1a6640; }
+    .badge--wholesale { background: #fde8f5; color: #8a1a6b; }
+    .badge--other     { background: #ebebf0; color: #555; }
+
+    .item-list { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .item-list li { font-size: 0.83rem; color: #444; }
+    .item-list li span { color: #8b7bb5; font-weight: 600; }
+
+    .total { font-weight: 700; color: #2c2c2c; }
+    .ts    { color: #888; font-size: 0.82rem; white-space: nowrap; }
+
+    /* ── Empty / loading states ── */
+    .state-msg {
+      padding: 2.5rem;
+      text-align: center;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    /* ── Refresh button ── */
+    .btn-refresh {
+      background: none;
+      border: 1.5px solid #8b7bb5;
+      color: #8b7bb5;
+      border-radius: 8px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn-refresh:hover { background: #8b7bb5; color: #fff; }
+  </style>
+</head>
+<body>
+
+<header class="admin-header">
+  <div>
+    <h1>Bubble Bliss — Admin Dashboard</h1>
+    <p>Orders &amp; contact submissions from the live database</p>
+  </div>
+</header>
+
+<div class="admin-body">
+
+  <!-- ── Orders ── -->
+  <section class="panel" aria-labelledby="orders-title">
+    <div class="panel__header">
+      <h2 class="panel__title" id="orders-title">🧋 Orders</h2>
+      <div style="display:flex;gap:0.75rem;align-items:center">
+        <span class="panel__count" id="orders-count">—</span>
+        <button class="btn-refresh" onclick="loadOrders()">↻ Refresh</button>
+      </div>
+    </div>
+    <div class="tbl-wrap" id="orders-body">
+      <p class="state-msg">Loading…</p>
+    </div>
+  </section>
+
+  <!-- ── Contacts ── -->
+  <section class="panel" aria-labelledby="contacts-title">
+    <div class="panel__header">
+      <h2 class="panel__title" id="contacts-title">✉️ Contact Submissions</h2>
+      <div style="display:flex;gap:0.75rem;align-items:center">
+        <span class="panel__count" id="contacts-count">—</span>
+        <button class="btn-refresh" onclick="loadContacts()">↻ Refresh</button>
+      </div>
+    </div>
+    <div class="tbl-wrap" id="contacts-body">
+      <p class="state-msg">Loading…</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+'use strict';
+
+function fmt(ts) {
+  if (!ts) return '—';
+  const d = new Date(ts + 'Z'); // SQLite stores UTC without Z
+  return d.toLocaleString('en-US', { month: 'short', day: 'numeric',
+    year: 'numeric', hour: 'numeric', minute: '2-digit' });
+}
+
+async function loadOrders() {
+  const body  = document.getElementById('orders-body');
+  const count = document.getElementById('orders-count');
+  body.innerHTML = '<p class="state-msg">Loading…</p>';
+  try {
+    const res  = await fetch('/api/orders');
+    const data = await res.json();
+    count.textContent = data.length;
+
+    if (data.length === 0) {
+      body.innerHTML = '<p class="state-msg">No orders yet.</p>';
+      return;
+    }
+
+    body.innerHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Items</th>
+            <th>Qty</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${data.map(o => `
+            <tr>
+              <td>${o.id}</td>
+              <td class="ts">${fmt(o.created_at)}</td>
+              <td>
+                <ul class="item-list">
+                  ${o.items.map(i =>
+                    `<li>× ${i.qty} <span>${i.name}</span> — ${i.sweet}, ${i.ice}</li>`
+                  ).join('')}
+                </ul>
+              </td>
+              <td>${o.item_count}</td>
+              <td class="total">$${Number(o.total_price).toFixed(2)}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>`;
+  } catch (e) {
+    body.innerHTML = '<p class="state-msg">Failed to load orders.</p>';
+  }
+}
+
+async function loadContacts() {
+  const body  = document.getElementById('contacts-body');
+  const count = document.getElementById('contacts-count');
+  body.innerHTML = '<p class="state-msg">Loading…</p>';
+  try {
+    const res  = await fetch('/api/contacts');
+    const data = await res.json();
+    count.textContent = data.length;
+
+    if (data.length === 0) {
+      body.innerHTML = '<p class="state-msg">No contact submissions yet.</p>';
+      return;
+    }
+
+    body.innerHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Inquiry</th>
+            <th>Location</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${data.map(c => `
+            <tr>
+              <td>${c.id}</td>
+              <td class="ts">${fmt(c.created_at)}</td>
+              <td>${esc(c.name)}</td>
+              <td><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></td>
+              <td>${esc(c.phone) || '—'}</td>
+              <td><span class="badge badge--${c.inquiry_type}">${esc(c.inquiry_type)}</span></td>
+              <td>${esc(c.location)}</td>
+              <td style="max-width:260px;white-space:pre-wrap">${esc(c.message)}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>`;
+  } catch (e) {
+    body.innerHTML = '<p class="state-msg">Failed to load contacts.</p>';
+  }
+}
+
+function esc(str) {
+  return String(str ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+loadOrders();
+loadContacts();
+</script>
+
+</body>
+</html>
