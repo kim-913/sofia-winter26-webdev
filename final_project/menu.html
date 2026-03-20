@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse the full Bubble Bliss menu — milk teas, fruit teas, smoothies, and seasonal specials. Filter and search your perfect drink.">
+  <title>Menu — Bubble Bliss</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Bubble Bliss — home">
+        <span class="logo__name">Bubble Bliss</span>
+        <span class="logo__tagline">Your Daily Dose of Happiness</span>
+      </a>
+      <button class="hamburger" id="hamburger"
+              aria-expanded="false" aria-controls="main-nav"
+              aria-label="Toggle navigation menu">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+    </div>
+    <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html" class="active" aria-current="page">Menu</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="locations.html">Locations</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+      <div class="container">
+        <h1 class="page-hero__title">Our Menu</h1>
+        <p class="page-hero__subtitle">20 handcrafted drinks — milk teas, fruit teas, smoothies &amp; seasonals</p>
+      </div>
+    </div>
+
+    <!-- Controls: Search + Filter -->
+    <div class="menu-controls" id="menu-controls">
+      <div class="menu-controls__inner">
+        <div class="search-wrap">
+          <span class="search-wrap__icon" aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            class="search-input"
+            id="search-input"
+            placeholder="Search drinks..."
+            aria-label="Search drinks"
+            autocomplete="off">
+        </div>
+
+        <ul class="filter-tabs" role="tablist" aria-label="Filter drinks by category">
+          <li role="presentation">
+            <button class="filter-tab" role="tab" data-category="all"
+                    aria-selected="true" aria-controls="drinks-grid"
+                    id="tab-all">All</button>
+          </li>
+          <li role="presentation">
+            <button class="filter-tab" role="tab" data-category="milk-tea"
+                    aria-selected="false" aria-controls="drinks-grid"
+                    id="tab-milk-tea">Milk Tea</button>
+          </li>
+          <li role="presentation">
+            <button class="filter-tab" role="tab" data-category="fruit-tea"
+                    aria-selected="false" aria-controls="drinks-grid"
+                    id="tab-fruit-tea">Fruit Tea</button>
+          </li>
+          <li role="presentation">
+            <button class="filter-tab" role="tab" data-category="smoothie"
+                    aria-selected="false" aria-controls="drinks-grid"
+                    id="tab-smoothie">Smoothies</button>
+          </li>
+          <li role="presentation">
+            <button class="filter-tab" role="tab" data-category="seasonal"
+                    aria-selected="false" aria-controls="drinks-grid"
+                    id="tab-seasonal">Seasonal</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Drinks Grid -->
+    <section class="section section-cream" aria-label="Drink catalog">
+      <div class="container">
+        <p class="fave-greeting" id="fave-greeting" aria-live="polite"></p>
+        <div class="grid-auto" id="drinks-grid" role="tabpanel" aria-live="polite">
+          <!-- Cards injected by menu.js -->
+        </div>
+        <p class="no-results" id="no-results" role="status">
+          No drinks match your search. Try a different keyword or category.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3 class="footer-col__title">Bubble Bliss</h3>
+        <p>Premium milk tea crafted with love. Find us downtown and on campus.</p>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col__title">Quick Links</h3>
+        <ul>
+          <li><a href="menu.html">Our Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="locations.html">Locations &amp; Hours</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col__title">Hours</h3>
+        <p>Monday – Friday: 9AM – 9PM</p>
+        <p>Saturday – Sunday: 10AM – 10PM</p>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 Bubble Bliss · Palo Alto & Costa Mesa · <a href="contact.html">Contact</a></p>
+  </footer>
+
+  <!-- Drink Detail Modal -->
+  <div class="modal-overlay" id="modal-overlay"
+       role="dialog" aria-modal="true"
+       aria-labelledby="modal-title"
+       aria-hidden="true">
+    <div class="modal-box" id="modal-box">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title"></h2>
+        <button class="modal-close" id="modal-close" aria-label="Close drink details">✕</button>
+      </div>
+      <img class="modal-img" id="modal-img" src="" alt="" loading="lazy">
+      <div class="modal-body">
+        <div class="modal-meta">
+          <span class="modal-price" id="modal-price"></span>
+          <span id="modal-badges"></span>
+        </div>
+        <p class="modal-desc" id="modal-desc"></p>
+        <div id="modal-listen-wrap" style="margin-bottom: var(--space-2);"></div>
+        <div class="modal-ingredients">
+          <h4>Ingredients</h4>
+          <div class="ingredient-list" id="modal-ingredients"></div>
+        </div>
+
+        <!-- Customization Builder -->
+        <div class="customizer">
+          <p class="customizer__title">Customize Your Drink</p>
+
+          <!-- Visual cup -->
+          <div class="cup-viz" aria-hidden="true">
+            <div class="cup-viz__cup">
+              <div class="cup-viz__fill" id="cup-fill"></div>
+            </div>
+            <span class="cup-viz__label" id="cup-label">50% Sweet</span>
+          </div>
+
+          <div class="customizer__row">
+            <span class="customizer__label" id="sweetness-label">Sweetness Level</span>
+            <div class="customizer__options" role="group" aria-labelledby="sweetness-label" id="sweetness-options">
+              <button class="custom-btn" data-value="0">0%</button>
+              <button class="custom-btn" data-value="25">25%</button>
+              <button class="custom-btn active" data-value="50">50%</button>
+              <button class="custom-btn" data-value="75">75%</button>
+              <button class="custom-btn" data-value="100">100%</button>
+            </div>
+          </div>
+
+          <div class="customizer__row">
+            <span class="customizer__label" id="ice-label">Ice Level</span>
+            <div class="customizer__options" role="group" aria-labelledby="ice-label" id="ice-options">
+              <button class="custom-btn" data-value="less">Less Ice</button>
+              <button class="custom-btn active" data-value="regular">Regular</button>
+              <button class="custom-btn" data-value="extra">Extra Ice</button>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn--purple" id="add-to-order" style="width:100%">
+          Add to Order
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/main.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

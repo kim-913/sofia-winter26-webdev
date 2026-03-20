@@ -1,0 +1,119 @@
+/* ============================================================
+   Bubble Bliss — Print Stylesheet
+   Hides decorative UI; shows clean, readable content
+   ============================================================ */
+@media print {
+  /* Hide non-content elements */
+  .site-header,
+  .main-nav,
+  .hamburger,
+  .skip-link,
+  .hero,
+  .page-hero .btn,
+  .menu-controls,
+  .modal-overlay,
+  .toast,
+  .btn,
+  .site-footer,
+  .special-band .btn,
+  .form-actions button[type="reset"] {
+    display: none !important;
+  }
+
+  /* Reset colors for print */
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+    font-family: Georgia, serif;
+  }
+
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+
+  /* Show full URLs after links */
+  a[href^="http"]::after,
+  a[href^="https"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #555;
+  }
+
+  /* Show page-hero text */
+  .page-hero {
+    background: none !important;
+    color: black !important;
+    border-bottom: 2pt solid black;
+    padding: 12pt 0;
+  }
+  .page-hero__title,
+  .page-hero__subtitle {
+    color: black !important;
+  }
+
+  /* Section titles */
+  .section-title {
+    color: black !important;
+    border-bottom: 1pt solid #ccc;
+    padding-bottom: 4pt;
+  }
+
+  /* Cards — flatten for print */
+  .card {
+    opacity: 1 !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: 1pt solid #ccc;
+    break-inside: avoid;
+  }
+
+  /* Table — keep all borders for print */
+  .hours-table,
+  .hours-table th,
+  .hours-table td {
+    border: 1pt solid #ccc !important;
+    background: white !important;
+    color: black !important;
+  }
+  .hours-table thead th {
+    background: #eee !important;
+    color: black !important;
+  }
+  .hours-table tbody tr.today {
+    background: #f0f0f0 !important;
+    font-weight: bold;
+  }
+
+  /* Grid: flatten to single column for print */
+  .grid-auto,
+  .grid-2,
+  .grid-3,
+  .values-grid,
+  .team-grid,
+  .footer-grid {
+    display: block !important;
+  }
+  .grid-auto > *,
+  .grid-2 > *,
+  .grid-3 > * {
+    margin-bottom: 12pt;
+  }
+
+  /* Form */
+  .form-card {
+    box-shadow: none;
+    border: 1pt solid #ccc;
+  }
+  .form-input,
+  .form-select,
+  .form-textarea {
+    border: 1pt solid #ccc !important;
+    background: white !important;
+  }
+
+  /* Page breaks */
+  section { break-inside: avoid; }
+  h2, h3  { break-after: avoid; }
+}

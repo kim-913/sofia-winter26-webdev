@@ -1,0 +1,14 @@
+# SQLite database files (auto-created at runtime)
+final_project/backend/bubble_bliss.db
+final_project/backend/bubble_bliss.db-shm
+final_project/backend/bubble_bliss.db-wal
+
+# Node.js
+node_modules/
+*/node_modules/
+
+# Claude Code local settings (private)
+.claude/
+
+# macOS
+.DS_Store

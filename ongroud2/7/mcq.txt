@@ -1,0 +1,239 @@
+1. What is the Internet?
+A. A collection of multimedia web pages
+B. A global system of interconnected computer networks
+C. A protocol used for file transfer
+D. A web browser
+
+2. What event helped accelerate Internet growth in the 1990s?
+A. Creation of HTML5
+B. Removal of the ban on commercial activity
+C. Invention of XML
+D. Development of email protocols
+
+3. The World Wide Web is best described as:
+A. The physical cables that carry Internet traffic
+B. A protocol for transferring files
+C. A graphical interface to information stored on web servers
+D. A private organizational network
+
+4. Who developed the World Wide Web?
+A. Bill Gates
+B. Steve Jobs
+C. Tim Berners-Lee
+D. Vint Cerf
+
+5. Which organization develops Internet protocol standards?
+A. ICANN
+B. W3C
+C. IETF
+D. IAB
+
+6. What is an RFC?
+A. A web browser standard
+B. A formal document published by the IETF
+C. A domain registration policy
+D. A markup language
+
+7. What is the primary role of ICANN?
+A. Designing web pages
+B. Developing web browsers
+C. Coordinating domain names and IP addresses
+D. Creating Internet protocols
+
+8. Which network type is typically confined to a single building?
+A. WAN
+B. LAN
+C. MAN
+D. Internet backbone
+
+9. What is an intranet?
+A. A public global network
+B. A private internal organizational network
+C. A secure external partner network
+D. A wireless Internet connection
+
+10. What is an extranet?
+A. A LAN used at home
+B. A public web server
+C. A private network shared with external partners
+D. The Internet backbone
+
+11. Which organization focuses on web accessibility?
+A. ICANN
+B. IETF
+C. WAI
+D. IAB
+
+12. What does WCAG stand for?
+A. Web Content Accessibility Guidelines
+B. Web Communication Access Group
+C. World Consortium Access Guide
+D. Web Compliance and Governance
+
+13. Universal Design refers to:
+A. Designing only for users with disabilities
+B. Designing for the newest technologies
+C. Designing products usable by the widest range of people
+D. Designing websites for mobile devices only
+
+14. Which law requires U.S. government websites to be accessible?
+A. HIPAA
+B. ADA
+C. Section 508
+D. FERPA
+
+15. In the client/server model, the client is typically:
+A. A database server
+B. A router
+C. A web browser
+D. A DNS server
+
+16. Which protocol is used to transfer web pages?
+A. FTP
+B. SMTP
+C. HTTP
+D. POP3
+
+17. What does HTTPS provide in addition to HTTP?
+A. Faster loading
+B. Multimedia support
+C. Encryption and security
+D. Email transmission
+
+18. What is an IP address?
+A. A text-based web address
+B. A unique numeric identifier for a device on the Internet
+C. A type of web server
+D. A markup tag
+
+19. What system translates domain names into IP addresses?
+A. URI
+B. TCP/IP
+C. DNS
+D. FTP
+
+20. Which markup language is the current standard for structuring web pages?
+A. XML
+B. XHTML
+C. HTML5
+D. SGML
+
+21. What does HTML stand for?
+A. Hyper Transfer Markup Language
+B. Hypertext Markup Language
+C. High Text Machine Language
+D. Hyperlink and Text Markup Language
+
+22. Which organization sets the standards for HTML?
+A. IETF
+B. ICANN
+C. W3C
+D. IEEE
+
+23. What is the primary purpose of HTML?
+A. To style web pages
+B. To create interactive databases
+C. To structure content for display in a web browser
+D. To secure web communication
+
+24. Which statement best describes an HTML element?
+A. A programming function
+B. A pair of angle brackets only
+C. A markup code with a specific purpose
+D. A browser-specific feature
+
+25. Most HTML elements consist of:
+A. A single tag only
+B. An opening tag and a closing tag
+C. A file name and an extension
+D. A script and a style
+
+26. What is the purpose of the <!DOCTYPE html> declaration?
+A. Defines the page title
+B. Links the page to CSS
+C. Identifies the version of HTML used
+D. Displays metadata in the browser
+
+27. Which section of an HTML document contains information about the web page?
+A. <body>
+B. <title>
+C. <head>
+D. <main>
+
+28. Which element displays text in the browser tab or title bar?
+A. <meta>
+B. <title>
+C. <header>
+D. <h1>
+
+29. How many heading levels are available in HTML?
+A. 3
+B. 4
+C. 5
+D. 6
+
+30. Which element groups sentences and paragraphs of text together?
+A. <div>
+B. <blockquote>
+C. <p>
+D. <section>
+
+31. Which HTML element creates a line break without starting a new paragraph?
+A. <p>
+B. <br>
+C. <hr>
+D. <li>
+
+32. What is the purpose of the <blockquote> element?
+A. Displays code samples
+B. Creates hyperlinks
+C. Indents a block of text for emphasis
+D. Formats headings
+
+33. Which list type displays bullet points?
+A. Ordered list
+B. Description list
+C. Unordered list
+D. Navigation list
+
+34. Which element contains individual list items?
+A. <ul>
+B. <ol>
+C. <li>
+D. <dl>
+
+35. Which list type is best suited for terms and definitions?
+A. Ordered list
+B. Unordered list
+C. Description list
+D. Nested list
+
+36. What is the purpose of the <div> element?
+A. Displays inline text
+B. Creates a hyperlink
+C. Configures a structural block area
+D. Formats headings
+
+37. Which HTML5 element contains the main navigation links?
+A. <header>
+B. <nav>
+C. <main>
+D. <footer>
+
+38. Which element represents content that could stand alone, such as a blog post?
+A. <section>
+B. <aside>
+C. <article>
+D. <time>
+
+39. What attribute specifies the destination of a hyperlink?
+A. target
+B. src
+C. href
+D. rel
+
+40. Which type of hyperlink is used to link to another page on the same website?
+A. Absolute link
+B. External link
+C. Relative link
+D. Email link

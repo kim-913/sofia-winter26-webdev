@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Find Bubble Bliss near you — two locations downtown and on campus. View store hours, addresses, and directions.">
+  <title>Locations — Bubble Bliss</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Bubble Bliss — home">
+        <span class="logo__name">Bubble Bliss</span>
+        <span class="logo__tagline">Your Daily Dose of Happiness</span>
+      </a>
+      <button class="hamburger" id="hamburger"
+              aria-expanded="false" aria-controls="main-nav"
+              aria-label="Toggle navigation menu">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+    </div>
+    <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="locations.html" class="active" aria-current="page">Locations</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+      <div class="container">
+        <h1 class="page-hero__title">Find Us</h1>
+        <p class="page-hero__subtitle">Two locations, same great boba — open 7 days a week.</p>
+      </div>
+    </div>
+
+    <!-- Location Cards -->
+    <section class="section section-cream" aria-labelledby="locations-heading">
+      <div class="container">
+        <h2 class="section-title fade-in" id="locations-heading">Our Locations</h2>
+        <div class="grid-2">
+          <article class="location-card fade-in">
+            <h3 class="location-card__name">📍 Palo Alto</h3>
+            <div class="location-card__detail">
+              <span aria-hidden="true">🏠</span>
+              <span>1069 East Meadow Circle<br>Palo Alto, CA 94303</span>
+            </div>
+            <div class="location-card__detail">
+              <span aria-hidden="true">📞</span>
+              <a href="tel:+18888201484">(888) 820-1484</a>
+            </div>
+            <div class="location-card__detail">
+              <span aria-hidden="true">🕘</span>
+              <span>Mon–Fri: 9AM–9PM<br>Sat–Sun: 10AM–10PM</span>
+            </div>
+            <div class="location-card__detail">
+              <span aria-hidden="true">ℹ️</span>
+              <span>~20,000 sq ft · classrooms, computer lab,<br>student lounge &amp; faculty offices</span>
+            </div>
+            <div style="margin-top: 1rem;">
+              <a href="https://maps.google.com/?q=1069+East+Meadow+Circle+Palo+Alto+CA" class="btn btn--outline" target="_blank"
+                 rel="noopener noreferrer"
+                 aria-label="Get directions to Palo Alto location (opens in new tab)">
+                Get Directions
+              </a>
+            </div>
+          </article>
+
+          <article class="location-card fade-in">
+            <h3 class="location-card__name">📍 Costa Mesa</h3>
+            <div class="location-card__detail">
+              <span aria-hidden="true">🏠</span>
+              <span>3333 Harbor Blvd<br>Costa Mesa, CA 92626</span>
+            </div>
+            <div class="location-card__detail">
+              <span aria-hidden="true">📞</span>
+              <a href="tel:+18888201484">(888) 820-1484</a>
+            </div>
+            <div class="location-card__detail">
+              <span aria-hidden="true">🕘</span>
+              <span>Mon–Fri: 9AM–9PM<br>Sat–Sun: 10AM–10PM</span>
+            </div>
+            <div class="location-card__detail">
+              <span aria-hidden="true">ℹ️</span>
+              <span>14 acres · 4 buildings · 700+ parking spaces,<br>seminar rooms &amp; large lecture halls</span>
+            </div>
+            <div style="margin-top: 1rem;">
+              <a href="https://maps.google.com/?q=3333+Harbor+Blvd+Costa+Mesa+CA+92626" class="btn btn--outline" target="_blank"
+                 rel="noopener noreferrer"
+                 aria-label="Get directions to Costa Mesa location (opens in new tab)">
+                Get Directions
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Store Hours Table (Module 8 — accessible table) -->
+    <section class="section section-pink" aria-labelledby="hours-heading">
+      <div class="container">
+        <h2 class="section-title fade-in" id="hours-heading">Store Hours</h2>
+        <p class="section-subtitle fade-in">Today's hours are highlighted. All times are local (Pacific Time).</p>
+
+        <div class="table-wrap fade-in">
+          <table class="hours-table" id="hours-table">
+            <caption>Weekly Store Hours for Bubble Bliss — Downtown and Campus Locations</caption>
+            <thead>
+              <tr>
+                <th scope="col">Day</th>
+                <th scope="col">Palo Alto</th>
+                <th scope="col">Costa Mesa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-day="1">
+                <th scope="row">Monday</th>
+                <td>9:00 AM – 9:00 PM</td>
+                <td>8:00 AM – 10:00 PM</td>
+              </tr>
+              <tr data-day="2">
+                <th scope="row">Tuesday</th>
+                <td>9:00 AM – 9:00 PM</td>
+                <td>8:00 AM – 10:00 PM</td>
+              </tr>
+              <tr data-day="3">
+                <th scope="row">Wednesday</th>
+                <td>9:00 AM – 9:00 PM</td>
+                <td>8:00 AM – 10:00 PM</td>
+              </tr>
+              <tr data-day="4">
+                <th scope="row">Thursday</th>
+                <td>9:00 AM – 9:00 PM</td>
+                <td>8:00 AM – 10:00 PM</td>
+              </tr>
+              <tr data-day="5">
+                <th scope="row">Friday</th>
+                <td>9:00 AM – 9:00 PM</td>
+                <td>8:00 AM – 10:00 PM</td>
+              </tr>
+              <tr data-day="6">
+                <th scope="row">Saturday</th>
+                <td>10:00 AM – 10:00 PM</td>
+                <td>10:00 AM – 8:00 PM</td>
+              </tr>
+              <tr data-day="0">
+                <th scope="row">Sunday</th>
+                <td>10:00 AM – 10:00 PM</td>
+                <td>10:00 AM – 8:00 PM</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="section section-cream" aria-label="Contact prompt">
+      <div class="container" style="text-align:center;">
+        <h2 class="section-title fade-in">Questions?</h2>
+        <p class="section-subtitle fade-in">We'd love to hear from you. Reach out for catering inquiries, feedback, or just to say hi.</p>
+        <a href="contact.html" class="btn btn--purple fade-in">Contact Us</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3 class="footer-col__title">Bubble Bliss</h3>
+        <p>Premium milk tea crafted with love. Find us downtown and on campus.</p>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col__title">Quick Links</h3>
+        <ul>
+          <li><a href="menu.html">Our Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="locations.html">Locations &amp; Hours</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col__title">Hours</h3>
+        <p>Monday – Friday: 9AM – 9PM</p>
+        <p>Saturday – Sunday: 10AM – 10PM</p>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 Bubble Bliss · Palo Alto & Costa Mesa · <a href="contact.html">Contact</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

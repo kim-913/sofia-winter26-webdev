@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Bliss - Customer Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #2C2C2C;
+            background-color: #FAF8F5;
+        }
+
+        /* Header */
+        header {
+            background-color: #8B7BB5;
+            color: white;
+            text-align: center;
+            padding: 24px 16px;
+        }
+
+        header h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #F4C7D6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px;
+        }
+
+        nav a {
+            color: #2C2C2C;
+            text-decoration: none;
+            padding: 12px 0;
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        nav a:last-child {
+            border-bottom: none;
+        }
+
+        nav a:hover {
+            background-color: #8B7BB5;
+            color: white;
+        }
+
+        /* Main */
+        main {
+            padding: 16px;
+        }
+
+        /* Form card */
+        .form-card {
+            background-color: white;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 32px;
+        }
+
+        .form-card h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 28px;
+            color: #8B7BB5;
+            margin-bottom: 8px;
+        }
+
+        .form-card p.description {
+            color: #6B6B6B;
+            margin-bottom: 24px;
+        }
+
+        /* Form groups */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: #2C2C2C;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #2C2C2C;
+            background-color: #FAF8F5;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #8B7BB5;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Radio and checkbox groups */
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #8B7BB5;
+            cursor: pointer;
+        }
+
+        /* Divider */
+        .section-divider {
+            border: none;
+            border-top: 1px solid #F4C7D6;
+            margin: 24px 0;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"] {
+            background-color: #8B7BB5;
+            color: white;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #7a6aa4;
+        }
+
+        button[type="reset"] {
+            background-color: white;
+            color: #8B7BB5;
+            border: 2px solid #8B7BB5;
+        }
+
+        button[type="reset"]:hover {
+            background-color: #F4C7D6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2C2C2C;
+            color: white;
+            text-align: center;
+            padding: 24px 16px;
+            margin-top: 32px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        /* Tablet / Desktop */
+        @media (min-width: 768px) {
+            nav {
+                flex-direction: row;
+                justify-content: center;
+                padding: 0;
+            }
+
+            nav a {
+                padding: 16px 32px;
+                width: auto;
+                border-bottom: none;
+                border-right: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            nav a:last-child {
+                border-right: none;
+            }
+
+            main {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 32px;
+            }
+
+            header h1 {
+                font-size: 48px;
+            }
+
+            .tagline {
+                font-size: 16px;
+            }
+
+            .form-card {
+                padding: 40px;
+            }
+
+            .form-card h2 {
+                font-size: 36px;
+            }
+
+            .radio-group,
+            .checkbox-group {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .button-group {
+                flex-direction: row;
+                justify-content: flex-end;
+            }
+
+            button {
+                min-width: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Bubble Bliss</h1>
+        <p class="tagline">Your Daily Dose of Happiness</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <main>
+        <div class="form-card">
+            <h2>Customer Registration</h2>
+            <p class="description">Join the Bubble Bliss family! Fill out the form below to create your account and share your preferences.</p>
+
+            <form action="#" method="post">
+
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name">
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address">
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">Create Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password">
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Radio buttons -->
+                <div class="form-group">
+                    <label>Favorite Drink Category</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="drink_category" value="milk_tea">
+                            Milk Tea
+                        </label>
+                        <label>
+                            <input type="radio" name="drink_category" value="fruit_tea">
+                            Fruit Tea
+                        </label>
+                        <label>
+                            <input type="radio" name="drink_category" value="smoothie">
+                            Smoothie
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Checkboxes -->
+                <div class="form-group">
+                    <label>Favorite Toppings (select all that apply)</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="toppings" value="boba">
+                            Tapioca Boba
+                        </label>
+                        <label>
+                            <input type="checkbox" name="toppings" value="pudding">
+                            Pudding
+                        </label>
+                        <label>
+                            <input type="checkbox" name="toppings" value="grass_jelly">
+                            Grass Jelly
+                        </label>
+                        <label>
+                            <input type="checkbox" name="toppings" value="aloe">
+                            Aloe Vera
+                        </label>
+                        <label>
+                            <input type="checkbox" name="toppings" value="lychee_jelly">
+                            Lychee Jelly
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Select / dropdown -->
+                <div class="form-group">
+                    <label for="sweetness">Preferred Sweetness Level</label>
+                    <select id="sweetness" name="sweetness">
+                        <option value="">-- Select a sweetness level --</option>
+                        <option value="0">0% – No Sugar</option>
+                        <option value="25">25% – Less Sweet</option>
+                        <option value="50">50% – Half Sweet</option>
+                        <option value="75">75% – Less Full Sweet</option>
+                        <option value="100">100% – Full Sweet</option>
+                    </select>
+                </div>
+
+                <hr class="section-divider">
+
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label for="comments">Comments or Special Requests</label>
+                    <textarea id="comments" name="comments" placeholder="Tell us about any allergies, special requests, or feedback..."></textarea>
+                </div>
+
+                <!-- Buttons -->
+                <div class="button-group">
+                    <button type="reset">Reset</button>
+                    <button type="submit">Submit</button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Bubble Bliss | 123 Downtown Street | Open Daily 9AM – 9PM</p>
+    </footer>
+
+</body>
+</html>

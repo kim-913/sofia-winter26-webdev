@@ -1,0 +1,362 @@
+Final Signature Project
+Due Mar 22 by 11:59pm Points 100
+Project Overview (This can be a group project of team of 2)
+Students will design, implement, test, and present a multi-device, accessible, performance-optimized website (or web app) for a real or realistic client (examples: university departmental site, research group portal, local business, digital portfolio, library/catalog). The project must demonstrate mastery of:
+
+Visual design principles, information architecture, and navigation.
+
+CSS page layout techniques: box model, Flexbox/Grid, floats/clears, positioning, stacking, and responsive behaviors.
+
+Accessibility (WCAG/POUR), semantic HTML, and mobile-first responsive design.
+
+Progressive enhancement, performance optimization, and maintainable code structure.
+
+Students will produce a production-ready codebase, documentation, automated tests (unit/integration or end-to-end), a deployment, and a recorded final presentation.
+
+Learning Objectives (What students will prove)
+By the end of the project students will be able to:
+
+Produce a semantically structured, accessible multi-page website or SPA that adheres to WCAG principles.
+
+Apply advanced CSS layout techniques (box model, Flexbox/Grid, floats, relative/absolute/sticky positioning) to create responsive designs for multiple breakpoints.
+
+Design clear information architecture and navigation (hierarchical vs. linear) that supports usability and findability.
+
+Optimize assets and layout for performance (images, sprites, critical CSS, lazy loading).
+
+Implement client-side interactivity (search/filter, dynamic content updates) without sacrificing accessibility or progressive enhancement.
+
+Document design decisions with a professional artifact (README, architecture diagram, accessibility report, test plan) and present results.
+
+Project Scope & Requirements
+A. Core Deliverable (Required)
+A complete website or web app that includes:
+
+Home + 4 additional pages or SPA sections (e.g., About, Catalog/Products, Resources/Blog, Contact).
+
+Responsive layout implemented with CSS Grid and/or Flexbox; layout must demonstrate mastery of box model, margins, padding, and box-sizing.
+
+Accessible navigation: semantic <nav>, skip links, keyboard focus styles, readable link text, and breadcrumb or other aids for deep hierarchies.
+
+Design system basics: a consistent color scheme (with contrast checks), typography scale, spacing system, and UI component library (buttons, forms, cards).
+
+Interactive components: searchable/filterable item list (debounced search), modal or detail view, client-side form with validation. Interactivity must function without JavaScript where reasonable (graceful degradation/progressive enhancement).
+
+Advanced CSS features: pseudo-classes for links, CSS sprites or optimized imagery, print stylesheet, and sticky/fixed navigation usage where appropriate.
+
+Performance considerations: image optimization (responsive images / srcset), minimized CSS/JS, and lazy loading of non-critical assets.
+
+Accessibility audit: run and include results from at least two tools (e.g., WAVE, aXe, Lighthouse), plus a manual checklist covering WCAG POUR principles.
+
+B. Technical Stack (choose one path)
+Option 1 — Static / Progressive Enhancement (Recommended for design focus)
+Vanilla HTML5, semantic elements
+
+CSS (Sass optional) with Grid/Flexbox
+
+Minimal JS (ES6+) for interactivity (search, modal)
+
+Build step optional (parcel/webpack)
+Why choose: Emphasis on layout, semantics, accessibility.
+
+Option 2 — Single Page Application (for engineering focus)
+React (functional components) OR Vue
+
+CSS Modules / Tailwind / Sass (student choice)
+
+State management via Context or local component state
+
+Client-side routing for pages
+Extra credit: server-side rendering (Next.js) or hydration
+
+C. Optional Back End (extra credit / advanced)
+Provide a simple API for dynamic content (Node.js + Express + SQLite or MongoDB).
+
+Implement server-side search and pagination; protect against injection; document endpoints.
+Note: Back end is optional unless course requires full-stack; front end must work without it (mock JSON acceptable).
+
+Deliverables & Submission Package
+Each team (or individual) submits a .zip or a GitHub repo with:
+
+frontend/ (or root) source code, build scripts, and package manifest.
+
+README.md with setup, build, and deployment instructions.
+
+Design dossier (PDF, 4–8 pages):
+
+Target audience & persona
+
+Information architecture (site map)
+
+Wireframes (desktop + mobile)
+
+Color palette & typography rationale (contrast checks)
+
+Accessibility checklist & remediation plan.
+
+Technical documentation:
+
+File/folder structure
+
+Third-party libraries and licenses
+
+Key implementation notes (how search works, how layout adapts)
+
+Automated tests: at least 5 front-end tests (unit or integration) and accessibility smoke tests (Lighthouse script or axe).
+
+Deployed demo (URL) — optional extra credit (Netlify, Vercel, Render, or static hosting).
+
+Recorded presentation (8–12 minutes) — video or screencast showing features, design decisions, and accessibility demonstration.
+
+PowerPoint (.pptx) used in presentation.
+
+---
+
+Professional Responsive Web Platform
+Course: Web Development
+Duration: 4 Weeks
+Project Goal
+Students will design and implement a professional, responsive, accessible multi-page website or SPA that demonstrates mastery of:
+
+Semantic HTML5
+
+Advanced CSS layout (Box Model, Grid, Flexbox, Positioning)
+
+Information architecture & navigation
+
+Accessibility (WCAG principles)
+
+Responsive design
+
+Client-side interactivity (JavaScript)
+
+Performance optimization
+
+Professional documentation
+
+The project must reflect industry-level design and code quality.
+
+Week-by-Week Breakdown
+Week 1 – Architecture & Design Foundation
+Deliverable: Design Proposal + Wireframes (15%)
+Objectives
+Define project theme and target audience
+
+Create site map (information architecture)
+
+Apply design principles (repetition, contrast, alignment, proximity)
+
+Plan responsive layout strategy
+
+Required Submission
+Project Proposal (1–2 pages)
+
+Website purpose
+
+Target audience
+
+Core features
+
+Chosen tech stack
+
+Information Architecture
+
+Hierarchical site map
+
+Wireframes (Desktop + Mobile)
+
+Home page
+
+One content page
+
+Navigation layout
+
+Footer layout
+
+Design System Draft
+
+Color palette (with contrast consideration)
+
+Typography choices
+
+Layout grid concept
+
+Grading Focus
+Clarity of structure
+
+Design thinking
+
+Audience awareness
+
+Logical navigation plan
+
+Week 2 – Layout & Responsive Implementation
+Deliverable: Functional Responsive Layout (25%)
+Objectives
+Implement semantic HTML structure
+
+Apply CSS Box Model correctly
+
+Use Flexbox or Grid for main layout
+
+Implement header, navigation, footer
+
+Apply mobile-first design
+
+Implement at least 3 breakpoints
+
+Required Features
+Semantic tags: header, nav, main, section, article, footer
+
+Responsive layout
+
+Navigation styled with CSS
+
+Proper spacing using margin/padding
+
+box-sizing: border-box
+
+Accessible color contrast
+
+Print stylesheet (basic)
+
+Demonstrated Concepts
+CSS positioning (relative, absolute, sticky if applicable)
+
+Clear navigation hierarchy
+
+Organized folder structure
+
+Grading Focus
+Layout stability
+
+Clean CSS structure
+
+Mobile responsiveness
+
+Proper use of Grid/Flexbox
+
+Week 3 – Interactivity & Accessibility
+Deliverable: Interactive Components + Accessibility Report (30%)
+Objectives
+Add client-side interactivity using JavaScript
+
+Implement dynamic content updates
+
+Implement search/filter functionality
+
+Improve accessibility compliance
+
+Required Features
+Interactive Feature (minimum 2):
+
+Search/filter content
+
+Modal window or detail view
+
+Expand/collapse sections
+
+Dynamic form validation
+
+Accessibility Enhancements:
+
+Alt text for images
+
+Keyboard navigable menu
+
+Visible focus states
+
+ARIA labels where appropriate
+
+Skip-to-content link
+
+Accessibility Audit:
+
+Run Lighthouse or WAVE
+
+Include screenshot of report
+
+Identify 3 issues and fix them
+
+Performance:
+
+Optimized images
+
+No oversized assets
+
+Lazy loading if applicable
+
+Grading Focus
+Functional JavaScript
+
+Clean DOM manipulation
+
+Accessibility compliance
+
+Progressive enhancement
+
+Week 4 – Optimization, Testing & Final Presentation
+Deliverable: Final Project Submission (30%)
+Objectives
+Refine UI/UX
+
+Fix layout bugs
+
+Optimize performance
+
+Prepare documentation
+
+Deliver professional presentation
+
+Final Required Submission
+Complete Code (.zip or GitHub repo)
+
+README.md
+
+Setup instructions
+
+Project description
+
+Features implemented
+
+Accessibility considerations
+
+Known limitations
+
+Design Documentation PDF (4–6 pages)
+
+Target audience
+
+Design principles applied
+
+Layout decisions
+
+Responsive strategy
+
+Accessibility improvements
+
+Performance optimizations
+
+Recorded Presentation (8–12 minutes)
+Must explain:
+
+Architecture
+
+Layout techniques used
+
+Responsive design strategy
+
+Accessibility features
+
+Challenges & lessons learned
+
+PowerPoint slides
+
+Final Grading Rubric (100 Points)
+Category Points
+Week 1 – Design & Planning 15
+Week 2 – Layout & Responsiveness 25
+Week 3 – Interactivity & Accessibility 30
+Week 4 – Final Quality & Documentation 20
+Presentation 10
+Total 100

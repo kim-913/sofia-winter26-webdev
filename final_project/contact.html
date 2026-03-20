@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Bubble Bliss — send us a message, ask about catering, or share your feedback.">
+  <title>Contact — Bubble Bliss</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Bubble Bliss — home">
+        <span class="logo__name">Bubble Bliss</span>
+        <span class="logo__tagline">Your Daily Dose of Happiness</span>
+      </a>
+      <button class="hamburger" id="hamburger"
+              aria-expanded="false" aria-controls="main-nav"
+              aria-label="Toggle navigation menu">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+    </div>
+    <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="locations.html">Locations</a></li>
+        <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+      <div class="container">
+        <h1 class="page-hero__title">Get in Touch</h1>
+        <p class="page-hero__subtitle">Questions, catering requests, or just want to say hi? We'd love to hear from you.</p>
+      </div>
+    </div>
+
+    <!-- Form Section -->
+    <section class="section section-cream" aria-labelledby="form-heading">
+      <div class="container">
+
+        <!-- Success Banner (hidden by default) -->
+        <div class="success-banner" id="success-banner" role="alert" aria-live="assertive">
+          <h3>🎉 Message Sent!</h3>
+          <p>Thanks for reaching out. We'll get back to you within 24 hours.</p>
+          <a href="index.html" class="btn btn--purple" style="margin-top: 1rem; display:inline-block">Back to Home</a>
+        </div>
+
+        <!-- Form Card -->
+        <div class="form-card fade-in" id="form-card">
+          <h2 class="section-title" id="form-heading" style="margin-bottom: 0.5rem">Send Us a Message</h2>
+          <p style="margin-bottom: 1.5rem; color: var(--color-gray);">
+            All fields marked with * are required.
+          </p>
+
+          <form id="contact-form" novalidate>
+
+            <!-- Section: About You -->
+            <p class="form-section-label">About You</p>
+
+            <!-- Name + Email side by side -->
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="name">Full Name *</label>
+                <div class="input-wrap">
+                  <span class="input-icon" aria-hidden="true">👤</span>
+                  <input type="text" class="form-input" id="name" name="name"
+                         autocomplete="name"
+                         placeholder="Kim Ke"
+                         aria-required="true"
+                         aria-describedby="name-error">
+                </div>
+                <span class="error-msg" id="name-error" role="alert" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address *</label>
+                <div class="input-wrap">
+                  <span class="input-icon" aria-hidden="true">✉️</span>
+                  <input type="email" class="form-input" id="email" name="email"
+                         autocomplete="email"
+                         placeholder="you@example.com"
+                         aria-required="true"
+                         aria-describedby="email-error">
+                </div>
+                <span class="error-msg" id="email-error" role="alert" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="form-group">
+              <label class="form-label" for="phone">
+                Phone <span class="optional">(optional)</span>
+              </label>
+              <div class="input-wrap">
+                <span class="input-icon" aria-hidden="true">📞</span>
+                <input type="tel" class="form-input" id="phone" name="phone"
+                       autocomplete="tel"
+                       placeholder="(408) 555-0100"
+                       aria-describedby="phone-hint">
+              </div>
+              <span class="error-msg" id="phone-hint" style="color: var(--color-gray);">
+                Format: (XXX) XXX-XXXX
+              </span>
+            </div>
+
+            <hr class="form-divider">
+
+            <!-- Section: Your Message -->
+            <p class="form-section-label">Your Inquiry</p>
+
+            <!-- Inquiry Type — pill radio buttons -->
+            <div class="form-group">
+              <fieldset>
+                <legend class="form-label">What's this about? *</legend>
+                <div class="pill-group" aria-describedby="inquiry-error">
+                  <div class="pill-option">
+                    <input type="radio" name="inquiry" id="inquiry-general" value="general" aria-required="true">
+                    <label class="pill-label" for="inquiry-general">💬 General Question</label>
+                  </div>
+                  <div class="pill-option">
+                    <input type="radio" name="inquiry" id="inquiry-order" value="order">
+                    <label class="pill-label" for="inquiry-order">🧋 Order / Menu</label>
+                  </div>
+                  <div class="pill-option">
+                    <input type="radio" name="inquiry" id="inquiry-catering" value="catering">
+                    <label class="pill-label" for="inquiry-catering">🎉 Catering</label>
+                  </div>
+                  <div class="pill-option">
+                    <input type="radio" name="inquiry" id="inquiry-feedback" value="feedback">
+                    <label class="pill-label" for="inquiry-feedback">⭐ Feedback</label>
+                  </div>
+                </div>
+                <span class="error-msg" id="inquiry-error" role="alert" aria-live="polite"></span>
+              </fieldset>
+            </div>
+
+            <!-- Contextual inquiry hint (populated by form.js) -->
+            <div class="inquiry-hint" id="inquiry-hint" aria-live="polite"></div>
+
+            <!-- How did you hear — pill checkboxes -->
+            <div class="form-group">
+              <fieldset>
+                <legend class="form-label">
+                  How did you find us? <span class="optional">(pick all that apply)</span>
+                </legend>
+                <div class="pill-group">
+                  <div class="pill-option">
+                    <input type="checkbox" name="source" id="src-social" value="social">
+                    <label class="pill-label" for="src-social">📱 Social Media</label>
+                  </div>
+                  <div class="pill-option">
+                    <input type="checkbox" name="source" id="src-friend" value="friend">
+                    <label class="pill-label" for="src-friend">🤝 Friend / Family</label>
+                  </div>
+                  <div class="pill-option">
+                    <input type="checkbox" name="source" id="src-search" value="search">
+                    <label class="pill-label" for="src-search">🔍 Search Engine</label>
+                  </div>
+                  <div class="pill-option">
+                    <input type="checkbox" name="source" id="src-walk" value="walk-by">
+                    <label class="pill-label" for="src-walk">🚶 Walked By</label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- Preferred Location -->
+            <div class="form-group">
+              <label class="form-label" for="location">Preferred Location *</label>
+              <div class="input-wrap">
+                <span class="input-icon" aria-hidden="true">📍</span>
+                <select class="form-select" id="location" name="location"
+                        aria-required="true"
+                        aria-describedby="location-error">
+                  <option value="">— Pick a location —</option>
+                  <option value="palo-alto">Palo Alto — 1069 East Meadow Circle</option>
+                  <option value="costa-mesa">Costa Mesa — 3333 Harbor Blvd</option>
+                  <option value="either">Either / No preference</option>
+                </select>
+              </div>
+              <span class="error-msg" id="location-error" role="alert" aria-live="polite"></span>
+            </div>
+
+            <hr class="form-divider">
+
+            <!-- Message with char counter -->
+            <div class="form-group">
+              <label class="form-label" for="message">Message *</label>
+              <div class="textarea-wrap">
+                <textarea class="form-textarea" id="message" name="message"
+                          placeholder="Tell us how we can help, request catering details, or just say hi 👋"
+                          aria-required="true"
+                          aria-describedby="message-error"
+                          maxlength="500"></textarea>
+                <span class="char-counter" id="char-counter" aria-hidden="true">500</span>
+              </div>
+              <span class="error-msg" id="message-error" role="alert" aria-live="polite"></span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="form-actions">
+              <button type="reset" class="btn btn--outline">Clear</button>
+              <button type="submit" class="btn btn--purple">Send Message ✉️</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3 class="footer-col__title">Bubble Bliss</h3>
+        <p>Premium milk tea crafted with love. Find us downtown and on campus.</p>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col__title">Quick Links</h3>
+        <ul>
+          <li><a href="menu.html">Our Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="locations.html">Locations &amp; Hours</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col__title">Hours</h3>
+        <p>Monday – Friday: 9AM – 9PM</p>
+        <p>Saturday – Sunday: 10AM – 10PM</p>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 Bubble Bliss · Palo Alto & Costa Mesa · <a href="contact.html">Contact</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/form.js"></script>
+</body>
+</html>

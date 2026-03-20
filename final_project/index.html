@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bubble Bliss — Premium milk tea shop downtown. Fresh tapioca pearls, customizable drinks, and seasonal specials.">
+  <title>Bubble Bliss — Premium Milk Tea</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+</head>
+<body>
+
+  <!-- Skip to content -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ── Header ─────────────────────────────────────────── -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Bubble Bliss — home">
+        <span class="logo__name">Bubble Bliss</span>
+        <span class="logo__tagline">Your Daily Dose of Happiness</span>
+      </a>
+      <button class="hamburger" id="hamburger"
+              aria-expanded="false" aria-controls="main-nav"
+              aria-label="Toggle navigation menu">
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+    </div>
+    <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="locations.html">Locations</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ── Main ──────────────────────────────────────────── -->
+  <main id="main">
+
+    <!-- Hero Section -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <!-- Decorative CSS bubbles -->
+      <div class="bubble" aria-hidden="true"></div>
+      <div class="bubble" aria-hidden="true"></div>
+      <div class="bubble" aria-hidden="true"></div>
+      <div class="bubble" aria-hidden="true"></div>
+      <div class="bubble" aria-hidden="true"></div>
+      <div class="bubble" aria-hidden="true"></div>
+      <div class="bubble" aria-hidden="true"></div>
+      <div class="bubble" aria-hidden="true"></div>
+      <!-- Scroll-driven parallax orbs -->
+      <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
+      <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
+      <div class="hero__orb hero__orb--3" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <h1 class="hero__title" id="hero-heading">Sip the Bliss.</h1>
+        <p class="hero__subtitle">
+          Handcrafted milk teas, fresh tapioca pearls, and endless customization —
+          made with love in the heart of downtown.
+        </p>
+        <div class="hero__actions">
+          <a href="menu.html" class="btn btn--primary">Explore Our Menu</a>
+          <a href="about.html" class="btn btn--secondary">Our Story</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Today's Special Band -->
+    <div class="special-band" aria-live="polite">
+      <p class="special-band__label">Today's Special</p>
+      <h2 class="special-band__name" id="special-name">Brown Sugar Boba Milk Tea</h2>
+      <p class="special-band__desc" id="special-desc">
+        Rich brown sugar syrup swirled with fresh milk and chewy tapioca pearls.
+      </p>
+      <a href="menu.html" class="btn btn--purple">Order Now</a>
+    </div>
+
+    <!-- Featured Drinks -->
+    <section class="section section-cream" aria-labelledby="featured-heading">
+      <div class="container">
+        <div class="featured-header fade-in">
+          <h2 class="section-title" id="featured-heading">Fan Favorites</h2>
+          <p class="section-subtitle">Our most-loved drinks, freshly made every day.</p>
+        </div>
+        <div class="grid-auto" id="featured-grid">
+          <!-- Injected by main.js -->
+        </div>
+        <div style="text-align:center; margin-top: 2rem;">
+          <a href="menu.html" class="btn btn--outline fade-in">View Full Menu</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Teaser -->
+    <section class="section section-pink" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="about-teaser">
+          <img class="about-teaser__img fade-in"
+               src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80"
+               alt="Barista carefully pouring brown sugar syrup into a fresh cup of milk tea"
+               loading="lazy"
+               width="700" height="466">
+          <div class="about-teaser__text fade-in">
+            <h2 class="section-title" id="about-heading">Crafted with Care</h2>
+            <p>At Bubble Bliss, every drink starts with the finest tea leaves sourced from
+               family farms in Taiwan and Japan. Our tapioca pearls are cooked fresh every
+               four hours — never reheated, never compromised.</p>
+            <p>We believe great boba is more than a drink — it's a moment of joy in
+               your day. That's why we obsess over every detail, from sweetness levels
+               to the perfect ice ratio.</p>
+            <a href="about.html" class="btn btn--purple">Meet Our Team</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section section-cream" aria-labelledby="why-heading">
+      <div class="container">
+        <div class="featured-header fade-in">
+          <h2 class="section-title" id="why-heading">Why Bubble Bliss?</h2>
+        </div>
+        <div class="grid-3 values-grid">
+          <article class="value-card fade-in">
+            <span class="value-card__icon" aria-hidden="true">🫧</span>
+            <h3 class="value-card__title">Fresh Every Day</h3>
+            <p>Boba pearls cooked in small batches every 4 hours. No shortcuts.</p>
+          </article>
+          <article class="value-card fade-in">
+            <span class="value-card__icon" aria-hidden="true">🎨</span>
+            <h3 class="value-card__title">Fully Customizable</h3>
+            <p>Choose your sweetness, ice level, and toppings. Your drink, your way.</p>
+          </article>
+          <article class="value-card fade-in">
+            <span class="value-card__icon" aria-hidden="true">🌿</span>
+            <h3 class="value-card__title">Sustainably Sourced</h3>
+            <p>Eco-friendly cups and locally sourced ingredients whenever possible.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3 class="footer-col__title">Bubble Bliss</h3>
+        <p>Premium milk tea crafted with love. Find us downtown and on campus.</p>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col__title">Quick Links</h3>
+        <ul>
+          <li><a href="menu.html">Our Menu</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="locations.html">Locations &amp; Hours</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col__title">Hours</h3>
+        <p>Monday – Friday: 9AM – 9PM</p>
+        <p>Saturday – Sunday: 10AM – 10PM</p>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 Bubble Bliss · Palo Alto & Costa Mesa · <a href="contact.html">Contact</a></p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+/*
+ * CSS Visual Effects Assignment - Module 4
+ * This stylesheet demonstrates various CSS3 visual effects
+ * while maintaining good performance practices
+ */
+
+/* Element Selector - Applies to all body elements */
+body {
+    /* Gradient background for visual interest without heavy image files */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Element Selector - Header styling */
+header {
+    background-color: rgba(255, 255, 255, 0.95); /* RGBA color with opacity for modern look */
+    padding: 2rem;
+    text-align: center;
+    /* Box shadow effect - creates depth and elevation */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+h1 {
+    margin: 0;
+    color: #2c3e50;
+    /* Text shadow effect - adds subtle depth to heading */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #34495e;
+    /* Border on heading as required */
+    border-left: 4px solid #667eea;
+    padding-left: 1rem;
+    margin-top: 1.5rem;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2.5rem; /* Padding creates space between content and borders */
+    /* Rounded corners effect - softens the design */
+    border-radius: 12px;
+    /* Box shadow for card-like elevation */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ID Selector - Targets the intro section specifically */
+#intro-section {
+    margin-bottom: 3rem;
+    /* Background with subtle color instead of image for better performance */
+    background-color: #f0f4ff;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+/* Class Selector - Applies to content images */
+.content-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    /* Rounded corners on images for modern aesthetic */
+    border-radius: 8px;
+    /* Subtle shadow on images */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    /*
+     * Image Optimization Note:
+     * web-design.jpg: Used JPEG format for photographic content.
+     * Image was resized and compressed to balance quality with file size for web delivery.
+     */
+}
+
+/* Class Selector - Styling for visual examples section */
+.visual-examples {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+figure {
+    margin: 2rem 0;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    /*
+     * Image Optimization Note:
+     * css-effects.jpg: Used JPEG format optimized for web.
+     * Compressed to reduce file size while maintaining visual quality for fast page loading.
+     */
+}
+
+figcaption {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #666;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+/* Class Selector - Feature box demonstration */
+.feature-box {
+    background: linear-gradient(to right, #ff6b6b, #ee5a6f); /* Gradient background effect */
+    color: white;
+    padding: 1.5rem;
+    border-radius: 10px; /* Rounded corners */
+    margin-top: 1.5rem;
+    /* Box shadow for depth */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    /* Design choice: Gradient creates visual interest and draws attention to key content */
+}
+
+.feature-box h3 {
+    margin-top: 0;
+    border-left: none;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    text-align: center;
+    padding: 0.5rem;
+    color: white;
+    margin-top: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.15); /* Semi-transparent background */
+    border-radius: 8px;
+    max-width: 900px;
+    margin: 1.5rem auto 0;
+    font-size: 0.85rem;
+}
+
+/*
+ * Design Choices Summary:
+ * - Box shadows: Used to create depth and visual hierarchy throughout the page
+ * - Rounded corners: Applied to soften harsh edges and create modern aesthetic
+ * - Gradients: Used for backgrounds to add visual interest without image files
+ * - RGBA colors: Allow for transparency effects and layered design
+ * - Text shadow: Subtle depth on headings without performance impact
+ *
+ * Performance considerations:
+ * - Small blur radius on shadows (2-8px) for better rendering
+ * - Limited number of shadows to avoid excessive browser calculations
+ * - CSS gradients preferred over gradient image files for smaller file size
+ */
