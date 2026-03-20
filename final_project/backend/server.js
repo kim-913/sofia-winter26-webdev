@@ -6,6 +6,7 @@
  * Serves the frontend static files AND the following REST endpoints:
  *
  *   GET  /api/drinks           list all drinks (supports ?category=&search=)
+ *   GET  /api/orders           list all placed orders (newest first)
  *   POST /api/contact          save a contact form submission
  *   POST /api/orders           save a placed order
  *
@@ -93,6 +94,13 @@ app.post('/api/contact', (req, res) => {
 
   console.log(`[contact] #${result.lastInsertRowid} from ${email} — ${inquiry_type}`);
   res.status(201).json({ ok: true, id: result.lastInsertRowid });
+});
+
+/* ── GET /api/orders ───────────────────────────────────────── */
+app.get('/api/orders', (req, res) => {
+  const rows = db.prepare('SELECT * FROM orders ORDER BY created_at DESC').all();
+  const orders = rows.map(o => ({ ...o, items: JSON.parse(o.items) }));
+  res.json(orders);
 });
 
 /* ── POST /api/orders ──────────────────────────────────────── */
