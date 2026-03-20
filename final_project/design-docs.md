@@ -164,7 +164,25 @@ White text on Brand Purple: **4.52:1 — WCAG AA ✓**
 
 ---
 
-## 5. Layout Decisions
+## 5. Design Principles Applied
+
+Four classic design principles guided every page layout decision.
+
+**Repetition**
+Every page shares the same header, footer, card component, button styles, and color tokens. A user who learns one page knows all five. The `.card`, `.btn`, `.badge`, and `.section` classes are reused across all pages without modification — consistency without repetition in the code.
+
+**Contrast**
+Brand purple (#8B7BB5) on cream (#FAF8F5) creates clear visual hierarchy while staying soft. Buttons, active nav links, and section headings use the accent color against a neutral background. Body text (#2C2C2C on #FAF8F5) achieves 15.8:1 — well beyond the WCAG AAA threshold of 7:1.
+
+**Alignment**
+All content is left-anchored within a centered container (`max-width: 1100px`). Grid and Flexbox handle internal alignment — no absolute positioning, no magic pixel offsets. This creates a predictable reading flow whether on mobile or desktop.
+
+**Proximity**
+Related elements are grouped in cards, fieldsets, and sections with consistent internal padding. Unrelated sections are separated by background color changes (cream → pink → cream) rather than just whitespace, so the eye naturally groups content without needing dividers or borders.
+
+---
+
+## 6. Layout Decisions
 
 ### CSS Grid vs. Flexbox
 
@@ -194,7 +212,23 @@ JS adds `.scrolled` class at 10px scroll → box-shadow appears via CSS transiti
 
 ---
 
-## 6. Backend Architecture (Extra Credit)
+## 7. Performance Optimizations
+
+| Technique | Where Applied | Impact |
+|---|---|---|
+| `loading="lazy"` | All below-fold images | Defers image downloads until needed |
+| Explicit `width` + `height` on all `<img>` | All pages | Prevents Cumulative Layout Shift (CLS) |
+| Unsplash size params `?w=600&q=80` | All drink + team images | Server-side resize — ~80% smaller than originals |
+| CSS `transform` + `opacity` only for animations | All transitions, modals, cards | GPU-composited — no layout recalculation |
+| `{ passive: true }` on scroll/mousemove listeners | `main.js` | Tells browser scroll doesn't need to wait for JS |
+| `observer.unobserve()` after first trigger | Intersection Observer | Stops observing elements that have already animated |
+| All `<script>` tags at end of `<body>` | All pages | HTML parses without blocking on JS download |
+| No external fonts or CSS frameworks | All pages | Zero additional network requests |
+| Debounced search (300ms) | `menu.js` | Prevents excessive DOM updates on fast typing |
+
+---
+
+## 8. Backend Architecture (Extra Credit)
 
 A lightweight Express.js server serves the frontend and three REST API endpoints backed by SQLite.
 
@@ -210,7 +244,7 @@ A lightweight Express.js server serves the frontend and three REST API endpoints
 
 ---
 
-## 7. Accessibility
+## 9. Accessibility
 
 ### Issues Identified & Resolved
 

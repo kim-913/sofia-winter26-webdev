@@ -14,7 +14,29 @@ with a SQLite database, and the whole site is live on Render right now.
 
 ---
 
-## Slide 2 — Design System
+## Slide 2 — Architecture
+
+Let me quickly walk through how the project is structured before diving into the pages.
+
+There are five HTML files — one per page — all sharing a single stylesheet and a set of three JavaScript files.
+`main.js` runs on every page: it handles the sticky nav, the hamburger menu, the cart, scroll animations, and the toast notifications.
+`menu.js` only loads on the menu page — it manages the drink data, search, filters, and the modal.
+`form.js` only loads on the contact page — it handles validation and submission.
+
+The reason I split it this way is separation of concerns.
+No page loads JavaScript it doesn't need.
+
+For the backend, the same Express server does two things at once:
+it serves all the static HTML and CSS files, and it also handles the API routes.
+So there's no separate frontend server — one process, one deploy.
+
+The site is also built with progressive enhancement in mind.
+Every page works if you just open the HTML file directly in a browser.
+The backend adds persistence — saved orders, saved contacts — but nothing breaks without it.
+
+---
+
+## Slide 3 — Design System
 
 Before I wrote a single line of HTML, I figured out the entire design system.
 Every color, every font size, every spacing value is a CSS custom property —
@@ -27,7 +49,7 @@ And spacing follows a strict 8px grid throughout.
 
 ---
 
-## Slide 3 — Layout & Responsiveness
+## Slide 4 — Layout & Responsiveness
 
 The whole site is mobile-first — base styles target a phone,
 and I layer on complexity as the screen gets wider.
@@ -40,7 +62,7 @@ when you scroll past 10 pixels.
 
 ---
 
-## Slide 4 — Menu Page
+## Slide 5 — Menu Page
 
 The menu page is where most of the JavaScript lives.
 All 20 drinks are stored as a JavaScript array of objects,
@@ -58,7 +80,7 @@ that actually greets you by name when you come back.
 
 ---
 
-## Slide 5 — Accessibility
+## Slide 6 — Accessibility
 
 I treated accessibility as part of the structure, not something I'd fix at the end.
 Every page has a skip-to-content link.
@@ -71,7 +93,7 @@ body text is actually at 15.8 to 1, which is AAA.
 
 ---
 
-## Slide 6 — Contact Form
+## Slide 7 — Contact Form
 
 The contact form covers every HTML5 input type the rubric asks for:
 text, email, tel, radio buttons, checkboxes, a select, and a textarea.
@@ -86,7 +108,7 @@ and plays a typewriter animation for the success message.
 
 ---
 
-## Slide 7 — Locations Table
+## Slide 8 — Locations Table
 
 The locations page has an accessible data table.
 I put scope="col" on the day headers and scope="row" on the location headers —
@@ -98,7 +120,7 @@ I just grab new Date().getDay() and match it to a data attribute on each row.
 
 ---
 
-## Slide 8 — Backend
+## Slide 9 — Backend
 
 For extra credit, I built a small backend.
 It's an Express server with three endpoints:
@@ -114,7 +136,7 @@ And it auto-deploys from GitHub every time I push.
 
 ---
 
-## Slide 9 — Admin Dashboard
+## Slide 10 — Admin Dashboard
 
 Since I'm saving orders and contacts to a database,
 I also built an admin page at /admin.
@@ -128,7 +150,7 @@ I'll pull this up during the demo to show a live order I place right before.
 
 ---
 
-## Slide 10 — What I Learned
+## Slide 11 — What I Learned
 
 Three things that actually stuck with me.
 
@@ -147,7 +169,7 @@ I now understand JavaScript execution in a way no tutorial would have gotten me 
 
 ---
 
-## Slide 11 — Demo
+## Slide 12 — Demo
 
 Alright, let's look at the live site.
 
