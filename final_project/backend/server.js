@@ -6,10 +6,12 @@
  * Serves the frontend static files AND the following REST endpoints:
  *
  *   GET  /api/drinks           list all drinks (supports ?category=&search=)
- *   GET  /api/orders           list all placed orders (newest first)
- *   GET  /api/contacts         list all contact submissions (newest first)
+ *   GET  /api/orders           list all placed orders (newest first) [admin]
+ *   GET  /api/contacts         list all contact submissions (newest first) [admin]
  *   POST /api/contact          save a contact form submission
  *   POST /api/orders           save a placed order
+ *   POST /api/admin/login      log in to admin dashboard
+ *   GET  /api/admin/logout     log out of admin dashboard
  *
  * Run:  npm start              (production)
  *       npm run dev            (auto-restart on file change, Node 18+)
@@ -19,6 +21,7 @@
 
 const express = require('express');
 const path    = require('path');
+const crypto  = require('crypto');
 const db      = require('./db');
 
 // Auto-seed drinks on first run
@@ -27,34 +30,86 @@ require('./seed');
 const app  = express();
 const PORT = process.env.PORT || 3000;
 
-/* ── Admin Basic Auth ──────────────────────────────────────── */
-const ADMIN_USER = process.env.ADMIN_USERNAME || 'kimke';
-const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'bubbleme';
+/* ── Admin credentials + session token ────────────────────── */
+const ADMIN_USER   = process.env.ADMIN_USERNAME || 'kimke';
+const ADMIN_PASS   = process.env.ADMIN_PASSWORD || 'bubbleme';
+const SESSION_SECRET = process.env.SESSION_SECRET || 'bb-secret-2026';
 
-function adminAuth(req, res, next) {
-  const auth = req.headers['authorization'] || '';
-  const [scheme, encoded] = auth.split(' ');
-  if (scheme === 'Basic' && encoded) {
-    const [user, pass] = Buffer.from(encoded, 'base64').toString().split(':');
-    if (user === ADMIN_USER && pass === ADMIN_PASS) return next();
-  }
-  res.set('WWW-Authenticate', 'Basic realm="Bubble Bliss Admin"');
-  res.status(401).send('Unauthorized');
+// Deterministic token: changes whenever credentials change
+const ADMIN_TOKEN = crypto
+  .createHmac('sha256', SESSION_SECRET)
+  .update(`${ADMIN_USER}:${ADMIN_PASS}`)
+  .digest('hex');
+
+function parseCookies(req) {
+  const out = {};
+  (req.headers.cookie || '').split(';').forEach(c => {
+    const [k, ...v] = c.trim().split('=');
+    if (k) out[k.trim()] = v.join('=').trim();
+  });
+  return out;
+}
+
+function isAdmin(req) {
+  return parseCookies(req).bb_admin === ADMIN_TOKEN;
+}
+
+// Middleware for protected page routes — redirects to /admin on fail
+function adminPageAuth(req, res, next) {
+  if (isAdmin(req)) return next();
+  res.redirect('/admin');
+}
+
+// Middleware for protected API routes — returns 401 JSON on fail
+function adminApiAuth(req, res, next) {
+  if (isAdmin(req)) return next();
+  res.status(401).json({ error: 'Not authenticated.' });
 }
 
 /* ── Middleware ────────────────────────────────────────────── */
 app.use(express.json({ limit: '16kb' }));
+app.use(express.urlencoded({ extended: false })); // for login form POST
 
 // Serve the frontend (everything in final_project/) as static files
-// Admin page is served separately behind auth (see route below)
-app.use(express.static(path.join(__dirname, '..'), { index: false }));
+// /admin is handled explicitly below, not via static
+app.use(express.static(path.join(__dirname, '..'), {
+  index: false,
+  // Block direct file access to admin pages
+  setHeaders(res, filePath) {
+    if (filePath.endsWith('admin.html') || filePath.endsWith('admin-login.html')) {
+      res.setHeader('X-Robots-Tag', 'noindex');
+    }
+  },
+}));
 
-/* ── Admin page (auth-protected) ───────────────────────────── */
-app.get(['/admin', '/admin.html'], adminAuth, (_req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'admin.html'));
+/* ── Admin login / logout ──────────────────────────────────── */
+app.post('/api/admin/login', (req, res) => {
+  const { username, password } = req.body || {};
+  if (username === ADMIN_USER && password === ADMIN_PASS) {
+    res.setHeader('Set-Cookie',
+      `bb_admin=${ADMIN_TOKEN}; Path=/; HttpOnly; SameSite=Strict; Max-Age=86400`
+    );
+    return res.redirect('/admin');
+  }
+  res.redirect('/admin?error=1');
 });
 
-// Restore default index serving for /
+app.get('/api/admin/logout', (req, res) => {
+  res.setHeader('Set-Cookie',
+    'bb_admin=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0'
+  );
+  res.redirect('/admin');
+});
+
+/* ── Admin pages ───────────────────────────────────────────── */
+app.get(['/admin', '/admin.html'], (req, res) => {
+  if (isAdmin(req)) {
+    return res.sendFile(path.join(__dirname, '..', 'admin.html'));
+  }
+  res.sendFile(path.join(__dirname, '..', 'admin-login.html'));
+});
+
+/* ── Index ─────────────────────────────────────────────────── */
 app.get('/', (_req, res) => {
   res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
@@ -83,7 +138,6 @@ app.get('/api/drinks', (req, res) => {
 
   const rows = db.prepare(sql).all(...params);
 
-  // Parse stored JSON strings back into arrays
   const drinks = rows.map(d => ({
     ...d,
     ingredients: JSON.parse(d.ingredients),
@@ -124,14 +178,14 @@ app.post('/api/contact', (req, res) => {
 });
 
 /* ── GET /api/contacts ─────────────────────────────────────── */
-app.get('/api/contacts', adminAuth, (req, res) => {
+app.get('/api/contacts', adminApiAuth, (req, res) => {
   const rows = db.prepare('SELECT * FROM contacts ORDER BY created_at DESC').all();
   const contacts = rows.map(c => ({ ...c, how_heard: JSON.parse(c.how_heard) }));
   res.json(contacts);
 });
 
 /* ── GET /api/orders ───────────────────────────────────────── */
-app.get('/api/orders', adminAuth, (req, res) => {
+app.get('/api/orders', adminApiAuth, (req, res) => {
   const rows = db.prepare('SELECT * FROM orders ORDER BY created_at DESC').all();
   const orders = rows.map(o => ({ ...o, items: JSON.parse(o.items) }));
   res.json(orders);
@@ -145,7 +199,6 @@ app.post('/api/orders', (req, res) => {
     return res.status(400).json({ error: 'Order must contain at least one item.' });
   }
 
-  // Sanitize each item: only keep known fields
   const clean = items.map(i => ({
     id:    Number(i.id)   || 0,
     name:  String(i.name  || '').slice(0, 200),
@@ -170,7 +223,7 @@ app.post('/api/orders', (req, res) => {
   res.status(201).json({ ok: true, id: result.lastInsertRowid });
 });
 
-/* ── Fallback: SPA-style catch-all ─────────────────────────── */
+/* ── Fallback: catch-all ───────────────────────────────────── */
 app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, '..', 'index.html'));
 });

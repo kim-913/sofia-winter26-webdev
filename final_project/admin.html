@@ -18,13 +18,33 @@
     .admin-header {
       background: #8b7bb5;
       color: #fff;
-      padding: 1.1rem 2rem;
+      padding: 1rem 2rem;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      justify-content: space-between;
     }
-    .admin-header h1 { font-family: Georgia, serif; font-size: 1.4rem; }
-    .admin-header p  { font-size: 0.85rem; opacity: 0.85; margin-top: 0.15rem; }
+    .admin-header__left { display: flex; flex-direction: column; gap: 0.1rem; }
+    .admin-header h1 { font-family: Georgia, serif; font-size: 1.25rem; }
+    .admin-header p  { font-size: 0.8rem; opacity: 0.8; }
+    .admin-header__right { display: flex; align-items: center; gap: 1rem; }
+    .admin-header__site-link {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+    .admin-header__site-link:hover { color: #fff; text-decoration: underline; }
+    .btn-logout {
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      border-radius: 8px;
+      padding: 0.35rem 1rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-logout:hover { background: rgba(255,255,255,0.3); }
 
     /* ── Layout ── */
     .admin-body {
@@ -129,9 +149,13 @@
 <body>
 
 <header class="admin-header">
-  <div>
-    <h1>Bubble Bliss — Admin Dashboard</h1>
-    <p>Orders &amp; contact submissions from the live database</p>
+  <div class="admin-header__left">
+    <h1>Bubble Bliss — Admin</h1>
+    <p>Orders &amp; contact submissions</p>
+  </div>
+  <div class="admin-header__right">
+    <a class="admin-header__site-link" href="/">← Back to site</a>
+    <a class="btn-logout" href="/api/admin/logout">Log out</a>
   </div>
 </header>
 

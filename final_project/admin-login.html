@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login — Bubble Bliss</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #faf8f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      background: #8b7bb5;
+      padding: 1rem 2rem;
+    }
+    .logo__name    { font-family: Georgia, serif; font-size: 1.25rem; font-weight: bold; color: #fff; }
+    .logo__tagline { font-size: 0.75rem; color: rgba(255,255,255,0.75); display: block; }
+
+    /* ── Login card ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .login-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+      padding: 2.5rem 2.5rem 2rem;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-card__title {
+      font-family: Georgia, serif;
+      font-size: 1.5rem;
+      color: #8b7bb5;
+      margin-bottom: 0.3rem;
+    }
+    .login-card__sub {
+      font-size: 0.88rem;
+      color: #888;
+      margin-bottom: 1.8rem;
+    }
+
+    .field { margin-bottom: 1.2rem; }
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #2c2c2c;
+      margin-bottom: 0.4rem;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: Arial, sans-serif;
+      color: #2c2c2c;
+      background: #faf8f5;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+    input:focus { border-color: #8b7bb5; background: #fff; }
+
+    .error-msg {
+      display: none;
+      background: #fde8e8;
+      color: #c0392b;
+      border-radius: 8px;
+      padding: 0.65rem 1rem;
+      font-size: 0.88rem;
+      margin-bottom: 1.2rem;
+    }
+    .error-msg.show { display: block; }
+
+    .btn-login {
+      width: 100%;
+      background: #8b7bb5;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0.8rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-login:hover  { background: #7a6aa3; }
+    .btn-login:active { transform: scale(0.98); }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      color: #8b7bb5;
+      text-decoration: none;
+    }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/" style="text-decoration:none">
+      <span class="logo__name">Bubble Bliss</span>
+      <span class="logo__tagline">Your Daily Dose of Happiness</span>
+    </a>
+  </header>
+
+  <main>
+    <div class="login-card">
+      <h1 class="login-card__title">Admin Login</h1>
+      <p class="login-card__sub">Sign in to view orders and contact submissions.</p>
+
+      <div class="error-msg" id="error-msg" role="alert">
+        Wrong username or password. Try again.
+      </div>
+
+      <form method="POST" action="/api/admin/login" autocomplete="off">
+        <div class="field">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username"
+                 autocomplete="username" required autofocus>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password"
+                 autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn-login">Sign In</button>
+      </form>
+
+      <a class="back-link" href="/">← Back to Bubble Bliss</a>
+    </div>
+  </main>
+
+  <script>
+    // Show error if ?error=1 in URL
+    if (new URLSearchParams(location.search).get('error') === '1') {
+      document.getElementById('error-msg').classList.add('show');
+    }
+  </script>
+
+</body>
+</html>
